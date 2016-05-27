@@ -1432,10 +1432,14 @@ function rows_for(consonants)
 {
 	var rows = [];
 
+	var last_consonant = consonants[consonants.length - 1];
+
 	var pattern = new RegExp("^[aeiou]?([" + consonants + "][aeiou]){2,4}$");
+	var last_consonant_pattern = new RegExp(last_consonant);
+
 
 	var words = $.grep(window.palabras, function(word, index) {
-		return word.match(pattern);
+		return word.match(pattern) && word.match(last_consonant_pattern);
 	});
 
 	words = words.shuffle().slice(0, 8);
